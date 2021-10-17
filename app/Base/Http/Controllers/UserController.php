@@ -6,6 +6,7 @@ use Exception;
 use DateTimeZone;
 use App\Base\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use App\Base\Repositories\UserRepository;
 use App\Base\Mail\SendInvitationToRegister;
@@ -93,5 +94,16 @@ class UserController extends Controller
     private function usernameExists($username)
     {
         return (auth()->user()->username !== $username) && User::where('username', $username)->exists();
+    }
+
+    public function setLocale($lang) {
+
+        app()->setLocale($lang);
+
+        auth()->user()->lang = $lang;
+
+        auth()->user()->save();
+
+        return back();
     }
 }

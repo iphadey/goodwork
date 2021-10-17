@@ -251,4 +251,6 @@ return [
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
     ],
+
+    'enabled_languages' => env('LANGUAGE_ENABLED', 'en,zh-CN')
 ];

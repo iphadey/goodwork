@@ -212,6 +212,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('users/{user}/avatar', [UserAvatarController::class, 'store']);
 
+    Route::get('/set-locale/{lang}', [UserController::class, 'setLocale']);
+
     /**********************************
         Github Service
      **********************************/

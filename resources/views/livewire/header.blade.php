@@ -48,7 +48,7 @@
                     <button type="submit" class="sm:bg-fuchsia-600 sm:text-white text-fuchsia-700 text-sm font-bold sm:py-2 rounded">
                         <svg class="w-4 sm:w-6 text-gray-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
-                        </svg> 
+                        </svg>
                     </button>
                 </form>
             </div>
@@ -63,7 +63,7 @@
                         <path d="M5 7h7m-2 -2v2a5 8 0 0 1 -5 8m1 -4a7 4 0 0 0 6.7 4" />
                         <path d="M11 19l4 -9l4 9m-.9 -2h-6.2" />
                     </svg>
-                    <span class="text-xs font-semibold">English</span>
+                    <span class="text-xs font-semibold">{{ available_languages(get_locale()) }}</span>
                     <span class="inline-block h-6 pl-2 pr-1 border-r border-gray-500"></span>
                     <button aria-label="dropdown menu" @click.prevent="showMenu = !showMenu" class="focus:outline-none">
                         <x-heroicon-o-chevron-down class="w-4"/>
@@ -71,8 +71,9 @@
                     <template x-if="showMenu">
                         <div class="absolute top-0 right-0 mt-8 w-32">
                             <div class="bg-white text-gray-800 shadow-xl rounded-md flex flex-col space-y-4 py-4">
-                                <a href="https://zukoni.com/changelog" class="text-sm font-semibold px-4 hover:text-purple-600">French</a>
-                                <a href="https://zukoni.com/feedbacks" class="text-sm font-semibold px-4 hover:text-purple-600">Spanish</a>
+                                @foreach($languages as $lang => $value)
+                                    <a href="{{ url("/set-locale/$lang") }}" class="text-xs font-semibold px-4 hover:text-purple-600">{{ $value }}</a>
+                                @endforeach
                             </div>
                         </div>
                     </template>
